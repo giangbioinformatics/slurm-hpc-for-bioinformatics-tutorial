@@ -5,6 +5,7 @@ RC User Guide
    introduction
    rc-systems
    connecting-to-rc
+   rc-script-basics
 
 .. seealso::
    `RC Software Guide <https://github.com/giangbioinformatics/on-premise-bioinformatics-infrastructure>`
