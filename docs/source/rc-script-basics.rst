@@ -5,11 +5,29 @@ Submission Script Basics
 
 **What is a submission script**
 
-A ``submission script`` describes the resources you need the resource manager (SLURM) to allocate to your job. It also contains the commands needed to execute the application(s) you wish to run, including any set-up the application(s) may require.
+A ``submission script`` describes the resources you need the resource manager (SLURM) to allocate to your job.
+
+It allows you to run a script on the cluster by using the request resources. In bioinformatics, ``nextflow``, ``snakemaker``, and other workflow managers can be used to run multiple jobs in parallel, but you still need to submit a job to the cluster to run the workflow.
+
+It also contains the commands needed to execute the application(s) you wish to run, including any set-up the application(s) may require.
 
 The script needs to be created using a Linux text editor such as ``nano`` or ``vi`` - we recommend creating and editing submission scripts on the cluster rather than editing them on a Windows machine, as this can cause problems.
 
-**Simple submission script example**
+``srun`` and ``sbatch`` are the two main commands used to submit jobs to the cluster. 
+``srun`` is used to run a single interactive job that should be used for development, while ``sbatch`` is used to submit a job script to the cluster.
+
+**Common options**
+For both sbatch and srun, we can use the following options to specify the resources we need.
+For both 
+-n, --ntasks=<number>: Specifies the number of tasks to be run.
+-N, --nodes=<number>: Specifies the number of nodes to allocate for the job.
+-p, --partition=<partition>: Specifies the partition to submit the job to.
+-t, --time=<time>: Specifies the maximum runtime for the job.
+-c, --cpus-per-task=<number>: Specifies the number of CPUs per task.
+-o, --output=<file>: Redirects standard output to the specified file.
+-e, --error=<file>: Redirects standard error to the specified file.
+
+**Simple submission script example using SBATCH**
 
 In this example we are going to create a submission script to run a test application on the cluster. 
 
@@ -35,11 +53,9 @@ This command will start the Linux ``nano`` editor. You can use ``nano`` to add t
   #SBATCH --nodes=2
   #SBATCH --ntasks-per-node=4
   #SBATCH --time=00:10:00
-  #SBATCH --partition=devel
+  #SBATCH --partition=standard
   
-  module load mpitest
-  
-  mpirun mpihello
+  echo "This is a test for sbatch"
 
 .. note::
   Ensure the ``#! /bin/bash`` line is the first line of the script and the ``#SBATCH`` lines start at the beginning of the line.
@@ -59,13 +75,6 @@ The following ``#SBATCH`` lines request specific cluster resources:
 ``--time=00:10:00`` requests a run time of 10 minutes (the maximum for the ``devel`` partition)
 
 ``--partition=devel`` requests that this job runs on the ``devel`` partition, which is reserved for testing
-
-``module load mpihello`` The **module load** command is used to make an application environment available to use in your job, in this case the **mpitest** application.
-
-``mpirun mpihello`` This line runs the **mpihello** command using the special **mpirun** wrapper. 
-
-.. note::
-   MPI is required for multi-process operation across nodes, and may not be appropriate for all applications. 
 
 **Submitting the job**
 
@@ -87,12 +96,12 @@ This job should run very quickly, but you may be able to find it in the job queu
 If it is running, you will see something like::
 
      JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-   nnnnnnn     devel submit.s ouit0554  R       0:07      2 arc-c[302-303]
+   nnnnnnn     standard submit.s ouit0554  R       0:07      2 arc-c[302-303]
  
 If the job is waiting to run (because another user is using the ``devel`` nodes) you will see::
 
      JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-   nnnnnnn     devel submit.s ouit0554 PD       0:00      2 (None)
+   nnnnnnn     standard submit.s ouit0554 PD       0:00      2 (None)
  
 The difference being that in the first case you can see the job state is ``R`` for **RUNNING** and in the second it is ``PD`` for **PENDING** and it has not been allocated nodes in the ``NODELIST``
 
@@ -108,17 +117,39 @@ To view this output you can use the Linux ``cat`` command, so if our job ID was 
     
 This would give the output::
 
-    Hello world from processor arc-c302, rank 0 out of 8 processors
-    Hello world from processor arc-c302, rank 1 out of 8 processors
-    Hello world from processor arc-c302, rank 2 out of 8 processors
-    Hello world from processor arc-c302, rank 3 out of 8 processors
-    Hello world from processor arc-c303, rank 4 out of 8 processors
-    Hello world from processor arc-c303, rank 5 out of 8 processors
-    Hello world from processor arc-c303, rank 6 out of 8 processors
-    Hello world from processor arc-c303, rank 7 out of 8 processors
+    This is a test for sbatch
+    This is a test for sbatch
+    This is a test for sbatch
+    This is a test for sbatch
+    This is a test for sbatch
+    This is a test for sbatch
+    This is a test for sbatch
+    This is a test for sbatch
     
-The above being the output from running the ``mpihello`` application on the 8 CPUs that we requested, and you can see it ran with 4 processes on ``arc-c302`` and 4 on ``arc-c303``
-
-
-
+It repeats 8 times because we requested 4 jobs but each job ran on 2 nodes, so the output is repeated for each node.
   
+For commond usage, copy this and adjust script based on your needs::
+
+  #! /bin/bash
+  #SBATCH --nodes=1
+  #SBATCH --ntasks-per-node=1
+  #SBATCH --cpus-per-task=<request cpus>
+  #SBATCH --mem=<request memory>G
+  #SBATCH --time=00:10:00
+  #SBATCH --partition=<standard|gpu>
+  <Your script here>
+
+Submit your job::
+
+  sbatch submit.sh
+
+**Simple submission script example using SRUN**
+
+``srun`` is running interactively. We can change interpreter to ``/bin/bash`` or ``/usr/bin/python`` to run the script interactively. or
+The command as below::
+  
+    srun -n 1 -N 1 -c 1 -t 00:10:00 -p standard /bin/bash
+
+Or::
+
+    srun -n 1 -N 1 -c 1 -t 00:10:00 -p standard /usr/bin/python <script.py>
