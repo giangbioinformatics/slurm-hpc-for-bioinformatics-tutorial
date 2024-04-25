@@ -5,6 +5,7 @@ RC User Guide
    introduction
    rc-systems
    connecting-to-rc
+   session-ssh
    rc-script-basics
 
 .. seealso::
