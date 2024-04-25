@@ -1,5 +1,6 @@
-Accessing and Submitting Jobs via SSH to SLURM within a Screen Session
-=======================================================================
+
+SSH Screen Session
+==================
 
 Introduction
 ------------
