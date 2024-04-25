@@ -19,13 +19,20 @@ The script needs to be created using a Linux text editor such as ``nano`` or ``v
 **Common options**
 For both sbatch and srun, we can use the following options to specify the resources we need.
 For both 
+
 -n, --ntasks=<number>: Specifies the number of tasks to be run.
+
 -N, --nodes=<number>: Specifies the number of nodes to allocate for the job.
+
 -p, --partition=<partition>: Specifies the partition to submit the job to.
+
 -t, --time=<time>: Specifies the maximum runtime for the job.
+
 -c, --cpus-per-task=<number>: Specifies the number of CPUs per task.
--o, --output=<file>: Redirects standard output to the specified file.
--e, --error=<file>: Redirects standard error to the specified file.
+
+-o, --output=<file>: Redirects main output to the specified file.
+
+-e, --error=<file>: Redirects main error to the specified file.
 
 **Simple submission script example using SBATCH**
 
@@ -53,7 +60,7 @@ This command will start the Linux ``nano`` editor. You can use ``nano`` to add t
   #SBATCH --nodes=2
   #SBATCH --ntasks-per-node=4
   #SBATCH --time=00:10:00
-  #SBATCH --partition=standard
+  #SBATCH --partition=main
   
   echo "This is a test for sbatch"
 
@@ -96,12 +103,12 @@ This job should run very quickly, but you may be able to find it in the job queu
 If it is running, you will see something like::
 
      JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-   nnnnnnn     standard submit.s ouit0554  R       0:07      2 arc-c[302-303]
+   nnnnnnn     main submit.s ouit0554  R       0:07      2 arc-c[302-303]
  
 If the job is waiting to run (because another user is using the ``devel`` nodes) you will see::
 
      JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-   nnnnnnn     standard submit.s ouit0554 PD       0:00      2 (None)
+   nnnnnnn     main submit.s ouit0554 PD       0:00      2 (None)
  
 The difference being that in the first case you can see the job state is ``R`` for **RUNNING** and in the second it is ``PD`` for **PENDING** and it has not been allocated nodes in the ``NODELIST``
 
@@ -136,7 +143,7 @@ For commond usage, copy this and adjust script based on your needs::
   #SBATCH --cpus-per-task=<request cpus>
   #SBATCH --mem=<request memory>G
   #SBATCH --time=00:10:00
-  #SBATCH --partition=<standard|gpu>
+  #SBATCH --partition=<main|gpu>
   <Your script here>
 
 Submit your job::
@@ -148,8 +155,12 @@ Submit your job::
 ``srun`` is running interactively. We can change interpreter to ``/bin/bash`` or ``/usr/bin/python`` to run the script interactively. or
 The command as below::
   
-    srun -n 1 -N 1 -c 1 -t 00:10:00 -p standard /bin/bash
+    srun -n 1 -N 1 -c 1 -t 00:10:00 -p main --pty /bin/bash
 
 Or::
 
-    srun -n 1 -N 1 -c 1 -t 00:10:00 -p standard /usr/bin/python <script.py>
+    srun -n 1 -N 1 -c 1 -t 00:10:00 -p main /usr/bin/python <script.py>
+
+For only download/upload files, just submit using 1 cpus::
+  
+      srun -n 1 -N 1 -c 1 -t 00:10:00 -p main --pty /bin/bash
