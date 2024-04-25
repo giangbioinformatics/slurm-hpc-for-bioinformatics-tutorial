@@ -17,22 +17,16 @@ The script needs to be created using a Linux text editor such as ``nano`` or ``v
 ``srun`` is used to run a single interactive job that should be used for development, while ``sbatch`` is used to submit a job script to the cluster.
 
 **Common options**
-For both sbatch and srun, we can use the following options to specify the resources we need.
-For both 
 
--n, --ntasks=<number>: Specifies the number of tasks to be run.
+For both sbatch and srun, we can use the following options to specify the resources we need::
 
--N, --nodes=<number>: Specifies the number of nodes to allocate for the job.
-
--p, --partition=<partition>: Specifies the partition to submit the job to.
-
--t, --time=<time>: Specifies the maximum runtime for the job.
-
--c, --cpus-per-task=<number>: Specifies the number of CPUs per task.
-
--o, --output=<file>: Redirects main output to the specified file.
-
--e, --error=<file>: Redirects main error to the specified file.
+    -n, --ntasks=<number>: Specifies the number of tasks to be run.
+    -N, --nodes=<number>: Specifies the number of nodes to allocate for the job.
+    -p, --partition=<partition>: Specifies the partition to submit the job to.
+    -t, --time=<time>: Specifies the maximum runtime for the job.
+    -c, --cpus-per-task=<number>: Specifies the number of CPUs per task.
+    -o, --output=<file>: Redirects main output to the specified file.
+    -e, --error=<file>: Redirects main error to the specified file.
 
 **Simple submission script example using SBATCH**
 
