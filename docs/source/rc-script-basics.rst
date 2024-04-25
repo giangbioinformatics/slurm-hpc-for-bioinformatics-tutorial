@@ -28,6 +28,7 @@ For both sbatch and srun, we can use the following options to specify the resour
     -o, --output=<file>: Redirects main output to the specified file.
     -e, --error=<file>: Redirects main error to the specified file.
 
+
 **Simple submission script example using SBATCH**
 
 In this example we are going to create a submission script to run a test application on the cluster. 
