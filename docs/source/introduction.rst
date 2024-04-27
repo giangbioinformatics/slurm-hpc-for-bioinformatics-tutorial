@@ -19,4 +19,5 @@ storage options, `rclone` can be used to mount the cloud storage to the cluster.
 Special thanks to the contributors for this documentations that allows the bioinformatican to use the cluster efficiently.
 
 **Contributors:**
-- [Thanh-Giang Tan Nguyen](https://www.linkedin.com/in/thanh-giang-tan-nguyen-761b28190/)
+
+- `Thanh-Giang Tan Nguyen <https://www.linkedin.com/in/thanh-giang-tan-nguyen-761b28190/>`_
