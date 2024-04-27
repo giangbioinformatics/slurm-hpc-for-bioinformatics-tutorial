@@ -20,4 +20,3 @@ Special thanks to the contributors for this documentations that allows the bioin
 
 **Contributors:**
 - [Thanh-Giang Tan Nguyen](https://www.linkedin.com/in/thanh-giang-tan-nguyen-761b28190/)
-
