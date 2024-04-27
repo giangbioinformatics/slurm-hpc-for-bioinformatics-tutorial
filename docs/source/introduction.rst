@@ -2,17 +2,9 @@ Introduction
 ------------
 
 The River Computing (RC) is the SLURM based cluster that allows for mainly bioinformatics usages.
+It utilizes the `nextflow` bioinformatics workflow manager to run bioinformatics pipelines using executor `slurm`.
+Slurm allows to allocate the resource of CPU cores, memory, and GPUs efficiently.
 
-- **Data Analysis**: Perform complex data analysis tasks efficiently.
-
-- **Storage**: Utilize NFS with NAS for centralized and reliable data storage. Integration with cloud storage services like AWS S3 and GCP for flexibility.
-
-- **SLURM Scheduler**: Efficiently manage job scheduling and resource allocation.
-
-- **Resource Allocation**: Fair distribution of CPU cores, memory, GPUs, and storage.
-
-- **GPU Support**: Accelerate computations with GPU-accelerated computing.
-
-- **Parallel Computing**: Parallelize computations across multiple CPU cores or nodes.
-
-- **Workflow Management**: Organize and automate complex computational workflows.
+The cluster is designed to run bioinformatics pipelines in a scalable and efficient manner. Minimal 
+installization to the cluster is required to run bioinformatics pipelines, includes the installation of the container
+engine `singularity` , `micromamba`, `docker-rootless-extras`.
