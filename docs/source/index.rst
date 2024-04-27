@@ -2,8 +2,7 @@ RC User Guide
 ==============
 .. toctree::
 
-   introduction
-   rc-systems
+   overview
    connecting-to-rc
    session-ssh
    rc-script-basics
