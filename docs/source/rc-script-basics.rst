@@ -98,12 +98,12 @@ This job should run very quickly, but you may be able to find it in the job queu
 If it is running, you will see something like::
 
      JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-   nnnnnnn     main submit.s ouit0554  R       0:07      2 arc-c[302-303]
+   nnnnnnn     main submit.s giangnguyen  R       0:07      2 worker-01
  
 If the job is waiting to run (because another user is using the ``devel`` nodes) you will see::
 
      JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-   nnnnnnn     main submit.s ouit0554 PD       0:00      2 (None)
+   nnnnnnn     main submit.s giangnguyen PD       0:00      2  worker-01
  
 The difference being that in the first case you can see the job state is ``R`` for **RUNNING** and in the second it is ``PD`` for **PENDING** and it has not been allocated nodes in the ``NODELIST``
 
@@ -158,4 +158,4 @@ Or::
 
 For only download/upload files, just submit using 1 cpus::
   
-      srun -n 1 -N 1 -c 1 -t 00:10:00 -p main --pty /bin/bash
+    srun --pty /bin/bash

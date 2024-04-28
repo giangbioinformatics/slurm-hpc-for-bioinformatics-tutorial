@@ -4,7 +4,6 @@ RC User Guide
 
    overview
    connecting-to-rc
-   session-ssh
    rc-script-basics
 
 .. seealso::
