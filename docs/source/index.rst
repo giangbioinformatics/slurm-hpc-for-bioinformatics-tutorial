@@ -5,6 +5,7 @@ RC User Guide
    overview
    connecting-to-rc
    rc-script-basics
+   code-server
 
 .. seealso::
    `RC Software Guide <https://github.com/giangbioinformatics/on-premise-bioinformatics-infrastructure>`
