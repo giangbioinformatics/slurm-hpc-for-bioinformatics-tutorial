@@ -71,14 +71,30 @@ All nodes have the following:
 
 Storage
 -------
-**NFS**: Allows to share storage between nodes using the local network.
+**NFS**: Allows to share storage between nodes using the local network area (LAN).
 
 - NFS server: login nodes
 - NFS client: worker nodes
 - NAS supports but not have yet
 
-**S3 Compatible Storage**: Allows to share storage between nodes or personal computer using the internet. Using goofys to mount S3 bucket to the local file system.
-- S3 CMS: tested
+By defaults, the <login nodes>:/home/ are mounted to the <worker nodes>:/home/ using NFS.
+Therefore, the user can access the same home directory from any node within the cluster.
+For example ``/home/giangnguyen`` on the login/controller node will be the same as ``/home/giangnguyen`` on the worker nodes.
+For NFS based system (NAS), the mount point can be configured by the system administrator UI.
+
+**S3 Compatible Storage**: 
+
+Allows to share storage between nodes or personal computer using the internet. Using goofys to mount S3 bucket to the local file system.
+- S3 AWS compatible storage: Minio, Ceph, CMC S3 distributed by `VNDATA <https://vndata.vn/>`_
+- AWS S3: S3 storage
+
+To mount the S3 bucket to the local file system, the user needs to install goofys and configure the S3 bucket.
+The S3 bucket is mounted to the appropriate directory. The S3 bucket can be used to storage the input data, output data, and the reference data.
+After adding the `s3 credentials <https://github.com/kahing/goofys>`_ , the user can mount the S3 bucket to the local file system by running the following command:
+```
+goofys <s3_bucket_name>:<s3 path> --file-mode=0666 --dir-mode=0777 --endpoint=<your s3_url>
+```
+
 
 **Others**: Using rclone to mount other cloud storage to the local file system. However, it is not recommended to use this method because it is slow and unstable.
 - Google Drive
