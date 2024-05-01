@@ -5,7 +5,7 @@ Code-server, a variant of Visual Studio Code (VSCode), operates on a distant ser
 
 Submit the sbatch job
 ---------------------
-
+Please, adjust your password to a secure one instead of `1234` and the time for using the requested resources `4:00:00` in the following script.
 To submit the sbatch job, run the following command::
     
     # create output to get the code-server log 
@@ -69,3 +69,9 @@ Access the code-server using ssh tunnel, replace ip and the username ::
 Open the browser and type the following URL::
 
     http://localhost:8080
+
+
+After finishing the work, please cancel the job to free the resources::
+
+    # check at the ``Submission Script Basics`` section to get the job_id
+    scancel <job_id>
