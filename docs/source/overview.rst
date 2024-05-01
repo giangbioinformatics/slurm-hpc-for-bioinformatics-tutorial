@@ -85,6 +85,7 @@ For NFS based system (NAS), the mount point can be configured by the system admi
 **S3 Compatible Storage**: 
 
 Allows to share storage between nodes or personal computer using the internet. Using goofys to mount S3 bucket to the local file system.
+
 - S3 AWS compatible storage: Minio, Ceph, CMC S3 distributed by `VNDATA <https://vndata.vn/>`_
 - AWS S3: S3 storage
 
