@@ -64,7 +64,7 @@ Currently, the system has 1 worker node with the following specifications:
 
 All nodes have the following:
 
-- 2x Intel Xeon E5-2696 V4 (2.20 GHz / 22 cores / 44 threads) Socket 2011-3 CPU. Thus all nodes have 48 CPU cores per node.
+- 2x Intel Xeon E5-2696 V4 (2.20 GHz / 22 cores / 44 threads) Socket 2011-3 CPU.
 - 250GB memory
 - OS is Ubunutu Linux 20.04 LTS Scheduler is SLURM.
 
