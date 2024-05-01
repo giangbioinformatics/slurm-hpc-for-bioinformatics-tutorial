@@ -90,10 +90,10 @@ Allows to share storage between nodes or personal computer using the internet. U
 
 To mount the S3 bucket to the local file system, the user needs to install goofys and configure the S3 bucket.
 The S3 bucket is mounted to the appropriate directory. The S3 bucket can be used to storage the input data, output data, and the reference data.
-After adding the `s3 credentials <https://github.com/kahing/goofys>`_ , the user can mount the S3 bucket to the local file system by running the following command:
-```
-goofys <s3_bucket_name>:<s3 path> --file-mode=0666 --dir-mode=0777 --endpoint=<your s3_url>
-```
+After adding the `s3 credentials <https://github.com/kahing/goofys>`_ , the user can mount the S3 bucket to the local file system by running the following command::
+    
+    goofys <s3_bucket_name>:<s3 path> --file-mode=0666 --dir-mode=0777 --endpoint=<your s3_url>
+
 
 
 **Others**: Using rclone to mount other cloud storage to the local file system. However, it is not recommended to use this method because it is slow and unstable.
