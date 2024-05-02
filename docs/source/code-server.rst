@@ -10,17 +10,19 @@ To submit the sbatch job, run the following command::
     
     # create output to get the code-server log 
     mkdir -p ~/code_server
+    chmod 700 ~/code_server
+    cd $HOME
     
     # create the sbatch script
     cat <<'EOF' > code_server_script.sh
     #!/bin/bash 
     #SBATCH --job-name=code-server
     #SBATCH --time=04:00:00
-    #SBATCH --output=~/code_server/code_server_%N.log 
+    #SBATCH --output=code_server/code_server_%N.log 
     #SBATCH --mem=1gb 
     #SBATCH --cpus-per-task=1
 
-    PASSWORD=1234 # TODO: Change to secure password
+    PASSWORD=$(openssl rand -base64 20)
     PORT=$(python3 -c 'import socket; s=socket.socket(); s.bind(("", 0)); print(s.getsockname()[1]); s.close()')
     echo "********************************************************************" 
     echo "Starting code-server in Slurm"
