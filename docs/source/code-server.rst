@@ -32,6 +32,7 @@ To submit the sbatch job, run the following command::
     echo "Password to access VSCode:" $PASSWORD
     echo "Listening on:" $PORT
     echo "********************************************************************"
+    PASSWORD=$PASSWORD code-server --bind-addr 0.0.0.0:$PORT --auth password --disable-telemetry
     EOF
 
     # submit the sbatch job
