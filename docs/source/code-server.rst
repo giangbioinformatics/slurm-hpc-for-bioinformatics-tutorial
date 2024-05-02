@@ -9,14 +9,14 @@ Please, adjust your password to a secure one instead of `1234` and the time for 
 To submit the sbatch job, run the following command::
     
     # create output to get the code-server log 
-    mkdir -p ~/home/code_server
+    mkdir -p ~/code_server
     
     # create the sbatch script
     cat <<'EOF' > code_server_script.sh
     #!/bin/bash 
     #SBATCH --job-name=code-server
     #SBATCH --time=04:00:00
-    #SBATCH --output=~/home/code_server/code_server_%N.log 
+    #SBATCH --output=~/code_server/code_server_%N.log 
     #SBATCH --mem=1gb 
     #SBATCH --cpus-per-task=1
 
@@ -44,7 +44,7 @@ Access the code-server
 To get log of the code-server, run the following command::
 
     # get the port
-    cat ~/home/code_server/code_server_worker.log
+    cat ~/code_server/code_server_worker.log
     Environment information:
     Date: Tue 30 Apr 2024 05:33:36 PM UTC
     Allocated node: worker
