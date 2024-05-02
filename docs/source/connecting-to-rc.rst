@@ -38,9 +38,8 @@ Using the rsa key, it will be copied to the server. However, you must type passw
 
 To connect to the RC cluster without using password
 
-Step 1: Copy rsa key to the server::
+Step 1: Copy rsa key to the server, create key if not exists::
 
-    # create key if not exists
     yes n | ssh-keygen -q -t rsa -f ~/.ssh/id_rsa -C "" -N "" || echo "key exists"
     ssh-copy-id <your username>@giangnguyen.zapto.org -i ~/.ssh/id_rsa.pub
 
