@@ -19,8 +19,8 @@ approriate directory. The S3 bucket can be used to storage the input data, outpu
 storage options, ``rclone`` can be used to mount the cloud storage to the cluster.
 
 Slum architecture:
-.. image:: html
-    :file: _static/images/slurm.svg
+.. raw:: html
+    :file:  _static/images/slurm.svg
 
 Special thanks to the contributors for this documentations that allows the bioinformatican to use the cluster efficiently.
 
