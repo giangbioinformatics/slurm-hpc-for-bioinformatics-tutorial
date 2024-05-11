@@ -18,9 +18,9 @@ For storage, the cluster allows to use ``goofys`` to mount the S3 bucket to the 
 approriate directory. The S3 bucket can be used to storage the input data, output data, and the reference data. For other
 storage options, ``rclone`` can be used to mount the cloud storage to the cluster.
 
-Slum architecture:
-.. raw:: html
-    :file:  _static/images/slurm.svg
+.. image:: _static/images/slurm.svg
+   :alt: Slum architecture
+   :raw: :file:
 
 Special thanks to the contributors for this documentations that allows the bioinformatican to use the cluster efficiently.
 
