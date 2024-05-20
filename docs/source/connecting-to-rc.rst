@@ -32,7 +32,7 @@ The username is your username on the RC cluster. If the hostname or port changes
 
 To connect to the RC cluster using password::
 
-    ssh <your username>@giangnguyen.zapto.org -p 1234
+    ssh <your username>@giangnguyen.zapto.org
 
 Using the rsa key, it will be copied to the server. However, you must type password for the first time set up
 
@@ -41,11 +41,9 @@ To connect to the RC cluster without using password
 Step 1: Copy rsa key to the server, create key if not exists::
 
     yes n | ssh-keygen -q -t rsa -f ~/.ssh/id_rsa -C "" -N "" || echo "key exists"
-    ssh-copy-id <your username>@giangnguyen.zapto.org -i ~/.ssh/id_rsa.pub
 
-Step 2 Login again, this time do not need to type password::
-
-    ssh <your username>@giangnguyen.zapto.org -p 1234
+Step 2: Currently, to keep the cluster more security, the river cluster only allows user to login using rsa key, send me your email to
+``nttg8100@gmail.com`` to get support using jira and slack. After that, you will receive the documentation for how to use the HPC effectively.
 
 Step 3: Optional, alias your login command, copy this line put this to your bashrc to use this quickly::
 
